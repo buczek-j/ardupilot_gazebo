@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<robot name="swarm_carrier" xmlns:xacro="http://www.ros.org/wiki/xacro">
+	<xacro:arg name="namespace" default="swarm_carrier" />
+	<xacro:property name="namespace" value="$(arg namespace)"/>
+	<xacro:property name="PI" value="3.14159265"/>
+	<xacro:include filename="$(find ardupilot_gazebo)/models/iris_with_standoffs/urdf/iris_with_standoffs.urdf.xacro"/>
+	<!-- <xacro:include filename="$(find ardupilot_gazebo)/models/ZEDM_stereocamera/urdf/zedm.urdf.xacro" ns="${namespace}"/> -->
+	<xacro:include filename="$(find ardupilot_gazebo)/models/wireless_antenna/urdf/wireless_antenna.xacro"/>
+	<xacro:include filename="$(find ardupilot_gazebo)/models/nuav_with_ardupilot/urdf/arducopter.xacro"/>
+	<xacro:include filename="$(find ardupilot_gazebo)/models/nuav_with_ardupilot/urdf/macros.xacro"/>
+	
+	<xacro:irisWithStandoffs
+		robot_namespace="${namespace}"
+	/>
+<!-- Joint connecting zed to swarm carrier -->
+<!--	<joint name="${namespace}/zed_mount" type="revolute">-->
+<!--		<parent>${namespace}/base_link</parent>-->
+<!--		<child>${namespace}/zedm_base_link</child>-->
+<!--		<axis xyz="0 0 1"/>-->
+<!--		<limit-->
+<!--		lower="0"-->
+<!--		upper="0"-->
+<!--		effort="0"-->
+<!--		velocity="0"-->
+<!--		/>-->
+<!--    </joint>-->
+
+<!--	<gazebo reference="${namespace}/zed_mount">-->
+<!--		<axis>-->
+<!--			<use_parent_model_frame>true</use_parent_model_frame>-->
+<!--		</axis>-->
+<!--	</gazebo>-->
+
+<!-- Wireless antenna array -->
+	<!-- <xacro:wirelessAntenna
+		name="${namespace}/wireless_antenna1"
+	/> -->
+
+<!-- Wireless antenna joints -->
+	<!-- <xacro:wirelessAntennaJoint
+		name="${namespace}/wireless_antenna1"
+		robot_namespace="${namespace}"
+		yaw="${PI}"
+		pitch="${PI/2}"
+	/> -->
+
+
+	<!-- Plugins for rotor physics -->
+	<xacro:rotorPhysics
+		robot_namespace="${namespace}"
+		nb="0"
+	/>
+	<xacro:rotorPhysics
+		robot_namespace="${namespace}"
+		nb="1"
+	/>
+	<xacro:rotorPhysics
+		robot_namespace="${namespace}"
+		nb="2"
+	/>
+	<xacro:rotorPhysics
+		robot_namespace="${namespace}"
+		nb="3"
+	/>
+
+	<!-- Arducopter plugin -->
+	<xacro:arducopter
+		robot_namespace="${namespace}"
+	/>
+
+
+
+
+	<!-- <gazebo>
+		<xacro:include>
+			<uri>model://gimbal_small_2d</uri>
+			<pose>0 -0.01 0.070 1.57 0 1.57</pose>
+		</xacro:include>
+
+		<joint name="iris_gimbal_mount" type="revolute">
+		<parent>iris::base_link</parent>
+		<child>gimbal_small_2d::base_link</child>
+		<axis>
+			<limit>
+			<lower>0</lower>
+			<upper>0</upper>
+			</limit>
+			<xyz>0 0 1</xyz>
+			<use_parent_model_frame>true</use_parent_model_frame>
+		</axis>
+		</joint>
+	</gazebo> -->
+</robot>

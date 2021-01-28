@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <% 
+  tree_spacing = 5
+  max_size = 70
+  count=0
+  %>
+
+  <world name="default">
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+     <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size><%=2*max_size%> <%=2*max_size%></size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+
+        <visual name="ground">
+        <pose>0 0 -0.1 0 0 -1.57</pose>
+        <cast_shadows>false</cast_shadows>
+        <geometry>
+          <plane>
+            <normal>0 0 1</normal>
+            <size><%=4*max_size%> <%=4*max_size%></size>
+          </plane>
+        </geometry>
+        <material>
+          <script>
+            <uri>file:///home/ubuntu/ardupilot_gazebo/materials/scripts</uri>
+            <uri>file:///home/ubuntu/ardupilot_gazebo/materials/textures</uri>
+            <name>Gazebo/Grass</name>
+          </script>
+        </material>
+      </visual>
+      </link>
+    </model>
+
+    
+    Random.new_seed
+    <include>
+      <name>hydrant_0</name>
+      <uri>model://fire_hydrant</uri>
+      <pose frame=''><%=rand*max_size%> <%=rand*max_size%> -0.1 0 0 0</pose>
+    </include>    
+
+  </world>
+</sdf>
