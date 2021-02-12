@@ -62,42 +62,19 @@
         <geometry>
           <plane>
             <normal>0 0 1</normal>
-            <size>80 80</size>
+            <size>200 200</size>
           </plane>
         </geometry>
         <material>
           <script>
             <uri>file:///home/ubuntu/ardupilot_gazebo/materials/scripts</uri>
             <uri>file:///home/ubuntu/ardupilot_gazebo/materials/textures</uri>
-            <name>Burlington</name>
+            <name>Franklin</name>
           </script>
         </material>
-      </visual>
+      </visual> 
       </link>
     </model>
-
-    <include>
-      <name>'Office Building_0'</name>
-      <uri>model://office_building</uri>
-      <pose frame=''>-30 -31.5 0 0 0 -0.150001</pose>
-    </include>
-    <include>
-      <name>'Office Building_1'</name>
-      <uri>model://office_building</uri>
-      <pose frame=''>-13 -34 0 0 0 -0.150001</pose>
-    </include>
-    <include>
-      <name>'Office Building_2'</name>
-      <uri>model://office_building</uri>
-      <pose frame=''>4 -37 0 0 0 -0.150001</pose>
-    </include>
-
-    <include>
-      <name>'osrf_first_office_0'</name>
-      <uri>model://osrf_first_office</uri>
-      <pose frame=''>45.0471 -14.389 -0.07 0 -0 1.3</pose>
-    </include> 
-    
     
     <% (0..nb.to_i-1).each do |i| %>
       <%
