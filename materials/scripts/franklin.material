@@ -1,0 +1,15 @@
+material Franklin
+{
+  receive_shadows off
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture Franklin.png
+        scale 1.0 1.0
+      }
+    }
+  }
+}
